@@ -1,0 +1,262 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@font-face {
+  font-family: "RemachineScript";
+  src: url("../public/assets/RemachineScript_Personal_Use.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@layer utilities {
+  .custom-scrollbar-thin::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #4776e6;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #8e54e9, #4776e6);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #8e54e9, #4776e6);
+    border-radius: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background-color: #f2f2f2;
+  }
+
+  .hide-scrollbar {
+    scrollbar-width: 1px;
+    scrollbar-color: transparent transparent;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 3px;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+}
+
+.loader {
+  --ballcolor: #f2f2f2;
+  --shadow: 0px 0 #ffffff00;
+  --shadowcolor: #ffffff00;
+  width: 10px;
+  height: 10px;
+  left: -120px;
+  border-radius: 50%;
+  position: relative;
+  color: var(--ballcolor);
+  animation: shadowRolling 2s linear infinite;
+}
+
+@keyframes shadowRolling {
+  0% {
+    box-shadow: var(--shadow), var(--shadow), var(--shadow), var(--shadow);
+  }
+
+  12% {
+    box-shadow:
+      100px 0 var(--ballcolor),
+      var(--shadow),
+      var(--shadow),
+      var(--shadow);
+  }
+
+  25% {
+    box-shadow:
+      110px 0 var(--ballcolor),
+      100px 0 var(--ballcolor),
+      var(--shadow),
+      var(--shadow);
+  }
+
+  36% {
+    box-shadow:
+      120px 0 var(--ballcolor),
+      110px 0 var(--ballcolor),
+      100px 0 var(--ballcolor),
+      var(--shadow);
+  }
+
+  50% {
+    box-shadow:
+      130px 0 var(--ballcolor),
+      120px 0 var(--ballcolor),
+      110px 0 var(--ballcolor),
+      100px 0 var(--ballcolor);
+  }
+
+  62% {
+    box-shadow:
+      200px 0 var(--shadowcolor),
+      130px 0 var(--ballcolor),
+      120px 0 var(--ballcolor),
+      110px 0 var(--ballcolor);
+  }
+
+  75% {
+    box-shadow:
+      200px 0 var(--shadowcolor),
+      200px 0 var(--shadowcolor),
+      130px 0 var(--ballcolor),
+      120px 0 var(--ballcolor);
+  }
+
+  87% {
+    box-shadow:
+      200px 0 var(--shadowcolor),
+      200px 0 var(--shadowcolor),
+      200px 0 var(--shadowcolor),
+      130px 0 var(--ballcolor);
+  }
+
+  100% {
+    box-shadow:
+      200px 0 var(--shadowcolor),
+      200px 0 var(--shadowcolor),
+      200px 0 var(--shadowcolor),
+      200px 0 var(--shadowcolor);
+  }
+}
+
+.slide-up {
+  animation: slide-up 500ms ease-in-out forwards;
+}
+
+@keyframes slide-up {
+  from {
+    height: 0;
+    opacity: 0.2;
+  }
+
+  to {
+    height: 66.66%;
+    opacity: 1;
+  }
+}
+
+.active {
+  border-bottom: 1px;
+  background-color: rgb(78, 131, 229);
+  border-radius: 20px;
+  width: fit-content;
+
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding: 4px;
+}
+
+@media (max-width: 640px) {
+  .active {
+    width: 100%;
+  }
+}
+
+.max-h-custom {
+  max-height: 30rem;
+}
+
+.stagger > * {
+  opacity: 0;
+  animation: fade-in 0.5s ease-in-out forwards;
+}
+
+.stagger > *:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.stagger > *:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.stagger > *:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Define styles for the searching box component */
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-box input[type="text"] {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  box-shadow: none;
+}
+
+.search-box button[type="submit"] {
+  padding: 0.75rem 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.search-box.open {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 20rem;
+  background-color: #fefefe;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-box.open input[type="text"] {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  box-shadow: none;
+}
+
+.search-box.open button[type="submit"] {
+  padding: 0.75rem 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
